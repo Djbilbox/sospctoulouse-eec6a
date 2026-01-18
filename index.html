@@ -1,211 +1,530 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOS PC Toulouse - Réparation et Dépannage Informatique</title>
+    <title>SOS PC Toulouse | Expert Réparation Informatique High-Tech</title>
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary: #0078d4;
+            /* Microsoft Blue */
+            --primary-dark: #005a9e;
+            --accent: #00bcf2;
+            --bg-dark: #0a0a0a;
+            --bg-light: #f3f2f1;
+            --text-main: #201f1e;
+            --text-muted: #605e5c;
+            --glass: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
-        
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            overflow-x: hidden;
             line-height: 1.6;
-            color: #333;
         }
-        
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 2rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
         }
-        
-        .container {
+
+        /* --- Navbar --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        nav.scrolled {
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 0.8rem 0;
+        }
+
+        .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
         }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            text-align: center;
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-        
-        .tagline {
-            text-align: center;
-            font-size: 1.2rem;
-            opacity: 0.9;
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
         }
-        
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            opacity: 0.8;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+            opacity: 1;
+        }
+
+        /* --- Hero Section --- */
         .hero {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            padding: 4rem 0;
-            text-align: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+            overflow: hidden;
+            padding-top: 80px;
         }
-        
-        .hero h2 {
-            font-size: 2rem;
+
+        /* Use the generated image as background if available, otherwise fallback */
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('microsoft_style_hero_bg_1768729727695.png');
+            /* Reference to generated artifact */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.8;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(30px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #0078d4, #00bcf2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 120, 212, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 120, 212, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-light);
+            transform: translateY(-2px);
+        }
+
+        /* --- Services --- */
+        .services {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
             margin-bottom: 1rem;
         }
-        
-        .cta-button {
-            display: inline-block;
-            background: white;
-            color: #f5576c;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            margin-top: 1rem;
-            transition: transform 0.3s;
-        }
-        
-        .cta-button:hover {
-            transform: scale(1.05);
-        }
-        
-        .services {
-            padding: 4rem 0;
-            background: #f8f9fa;
-        }
-        
-        .services h2 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 3rem;
-            color: #667eea;
-        }
-        
+
         .service-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
-        
+
         .service-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            background: var(--bg-light);
+            padding: 2.5rem;
+            border-radius: 16px;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
-        
+
         .service-card:hover {
-            transform: translateY(-5px);
+            background: white;
+            border-color: var(--primary);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
         }
-        
-        .service-card h3 {
-            color: #764ba2;
+
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
             margin-bottom: 1rem;
         }
-        
-        .contact {
-            padding: 4rem 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
+
+        .service-card h3 {
+            font-size: 1.5rem;
         }
-        
-        .contact h2 {
-            font-size: 2rem;
+
+        /* --- Social & Floating Contact (Style Djbilboxbeats) --- */
+        .floating-social {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 999;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            color: var(--text-main);
+        }
+
+        .social-btn:hover {
+            transform: scale(1.1);
+            color: white;
+        }
+
+        .facebook:hover {
+            background: #1877f2;
+        }
+
+        .google:hover {
+            background: #db4437;
+        }
+
+        .whatsapp:hover {
+            background: #25d366;
+        }
+
+        /* --- Contact Section --- */
+        .contact {
+            padding: 100px 0;
+            background: var(--bg-dark);
+            color: white;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            padding: 0 2rem;
+            align-items: center;
+        }
+
+        .contact-info h2 {
+            font-size: 3rem;
             margin-bottom: 2rem;
         }
-        
-        .contact-info {
-            font-size: 1.3rem;
-            margin: 1rem 0;
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
         }
-        
-        .contact-info a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
+
+        .info-item i {
+            color: var(--accent);
+            font-size: 1.5rem;
         }
-        
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* --- Footer --- */
         footer {
-            background: #2d3748;
-            color: white;
+            background: #050505;
+            color: #888;
+            padding: 40px 0;
             text-align: center;
-            padding: 2rem 0;
+            border-top: 1px solid #222;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* Reponsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-social {
+                bottom: 20px;
+                top: auto;
+                flex-direction: row;
+                left: 50%;
+                transform: translateX(-50%);
+            }
         }
     </style>
 </head>
+
 <body>
-    <header>
-        <div class="container">
-            <h1>🖥️ SOS PC Toulouse</h1>
-            <p class="tagline">Votre Expert en Réparation et Dépannage Informatique</p>
+
+    <!-- Floating Social Sidebar (Djbilboxbeats Style) -->
+    <div class="floating-social">
+        <a href="https://www.facebook.com/profile.php?id=61586633075599" class="social-btn facebook" target="_blank">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="mailto:contact@sospctoulouse.fr" class="social-btn google">
+            <i class="fab fa-google"></i>
+        </a>
+        <a href="https://wa.me/33612345678" class="social-btn whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-microchip"></i> SOS PC TOULOUSE
+            </a>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="tel:+33612345678" class="btn btn-primary" style="padding: 0.5rem 1.2rem;">Appeler</a></li>
+            </ul>
         </div>
-    </header>
-    
+    </nav>
+
     <section class="hero">
-        <div class="container">
-            <h2>Intervention Rapide à Toulouse et Alentours</h2>
-            <p>Dépannage • Réparation • Assistance • Formation</p>
-            <a href="#contact" class="cta-button">Contactez-nous Maintenant</a>
-        </div>
-    </section>
-    
-    <section class="services">
-        <div class="container">
-            <h2>Nos Services</h2>
-            <div class="service-grid">
-                <div class="service-card">
-                    <h3>🔧 Dépannage PC</h3>
-                    <p>Réparation de PC fixe et portable, diagnostics complets, remplacement de composants.</p>
-                </div>
-                
-                <div class="service-card">
-                    <h3>💾 Récupération de Données</h3>
-                    <p>Sauvegarde et récupération de vos données importantes en cas de panne.</p>
-                </div>
-                
-                <div class="service-card">
-                    <h3>🛡️ Sécurité & Antivirus</h3>
-                    <p>Installation et configuration d'antivirus, nettoyage de virus et malwares.</p>
-                </div>
-                
-                <div class="service-card">
-                    <h3>⚡ Optimisation PC</h3>
-                    <p>Amélioration des performances, mise à niveau RAM, SSD, nettoyage système.</p>
-                </div>
-                
-                <div class="service-card">
-                    <h3>📡 Réseau & WiFi</h3>
-                    <p>Installation et configuration de réseaux domestiques et professionnels.</p>
-                </div>
-                
-                <div class="service-card">
-                    <h3>👨‍🏫 Formation</h3>
-                    <p>Cours d'informatique personnalisés pour débutants et utilisateurs avancés.</p>
-                </div>
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1>L'expertise Informatique de Demain, Aujourd'hui.</h1>
+            <p>Réparation Premium, Optimisation Système et Sécurité Avancée à Toulouse. Votre partenaire technologique
+                de confiance.</p>
+            <div class="cta-group">
+                <a href="#services" class="btn btn-primary">Nos Services</a>
+                <a href="#contact" class="btn btn-secondary">Contact Rapide</a>
             </div>
         </div>
     </section>
-    
+
+    <section class="services" id="services">
+        <div class="section-header">
+            <h2>Services de Pointe</h2>
+            <p>Solutions expertes pour tous vos besoins technologiques.</p>
+        </div>
+        <div class="service-grid">
+            <div class="service-card">
+                <i class="fas fa-tools"></i>
+                <h3>Dépannage Expert</h3>
+                <p>Diagnostic complet et réparation de matériel de précision pour PC et Workstations.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-database"></i>
+                <h3>Récupération Cryogénique</h3>
+                <p>Techniques avancées de récupération de données critiques sur tous types de supports.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-shield-halved"></i>
+                <h3>Cyber-Sécurité</h3>
+                <p>Neutralisation de menaces et déploiement de protocoles de défense hautement sécurisés.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-bolt"></i>
+                <h3>Boost Performance</h3>
+                <p>Optimization logicielle et matérielle pour une réactivité instantanée de votre système.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-wifi"></i>
+                <h3>Réseaux Ultra-Haut Débit</h3>
+                <p>Architecture réseau robuste et WiFi intelligent pour particuliers et entreprises.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-user-graduate"></i>
+                <h3>Coaching Tech</h3>
+                <p>Maîtrisez les outils de demain avec nos formations personnalisées de haut niveau.</p>
+            </div>
+        </div>
+    </section>
+
     <section class="contact" id="contact">
-        <div class="container">
-            <h2>Contactez-nous</h2>
+        <div class="contact-container">
             <div class="contact-info">
-                <p>📞 Téléphone: <a href="tel:+33612345678">06 12 34 56 78</a></p>
-                <p>📧 Email: <a href="mailto:contact@sospctoulouse.fr">contact@sospctoulouse.fr</a></p>
-                <p>📍 Secteur: Toulouse et environs (Pechbonnieu, Castelginest, etc.)</p>
+                <h2>Prêt à Booster votre Digital ?</h2>
+                <p style="margin-bottom: 2.5rem; opacity: 0.7;">Intervention rapide sur Toulouse et toute la région
+                    Occitanie. Devis transparent sans engagement.</p>
+
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <span>06 12 34 56 78</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>contact@sospctoulouse.fr</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Toulouse, Balma, Blagnac, Union...</span>
+                </div>
             </div>
-            <p style="margin-top: 2rem;">Intervention rapide 7j/7 • Devis gratuit</p>
+            <div class="contact-form">
+                <p style="margin-bottom: 1.5rem; font-weight: 600;">Intervention 7j/7 - 24/24 en cas d'urgence.</p>
+                <a href="tel:+33612345678" class="btn btn-primary"
+                    style="display: block; text-align: center; margin-bottom: 1rem;">Appeler le Technicien</a>
+                <a href="https://wa.me/33612345678" class="btn btn-secondary"
+                    style="display: block; text-align: center;">Message WhatsApp</a>
+            </div>
         </div>
     </section>
-    
+
     <footer>
-        <div class="container">
-            <p>&copy; 2026 SOS PC Toulouse - Tous droits réservés</p>
-            <p>Site professionnel de dépannage informatique à Toulouse</p>
+        <div class="nav-container">
+            <p>&copy; 2026 SOS PC TOULOUSE. Inspiré par l'innovation Microsoft.</p>
+            <div style="margin-top: 10px; font-size: 0.8rem; opacity: 0.5;">
+                Réparation • Dépannage • Maintenance Prédictive
+            </div>
         </div>
     </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
+
 </html>
